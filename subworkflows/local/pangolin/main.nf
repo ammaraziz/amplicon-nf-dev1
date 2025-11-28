@@ -8,6 +8,17 @@ workflow CALL_LINEAGES {
     
     main:
     
+    pango_database = Channel.empty()
+    if(params.pangolin_update_data) {
+        PANGOLIN_UPDATEDATA('pangolin_db')
+        pango_database = PANGOLIN_UPDATEDATA.out.db
+    } else if (params.pango_database) {
+        pango_database = Channel.value(file(params.pango_database, type: 'dir'))
+    } else {
+        // do nothing - pass empty database flag
+        // this runs pangolin with inbuilt dataset
+    }
+
         // ch_all_consensus_fasta = ch_consensus
         //     .map { _meta, fasta -> fasta }
         //     .collectFile(name: 'all_consensus.fasta')
@@ -19,7 +30,6 @@ workflow CALL_LINEAGES {
 
         SEQKIT_REPLACE_NC(ch_all_consensus_fasta)
 
-        PANGOLIN_UPDATEDATA('pangolin_db')
         PANGOLIN_RUN (
             SEQKIT_REPLACE_NC.out.fastx,
             PANGOLIN_UPDATEDATA.out.db

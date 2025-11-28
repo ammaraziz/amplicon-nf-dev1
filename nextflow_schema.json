@@ -71,6 +71,24 @@
                     "description": "Version tag of the dataset to download. If not specified, Nextclade will retrieve the latest version.",
                     "fa_icon": "fas fa-project-diagram"
                 },
+                "pangolin":{
+                    "type": "string",
+                    "title": "Run Pangolineage",
+                    "description": "Run pangolin for lineage assignment.",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "pangolin_database":{
+                    "format": "path",
+                    "title": "Path to pangolin dataset.",
+                    "description": "Path to pangolin dataset containing ushser tree or pangoLEARN. Mutually exclusive with 'pangolin_update_data'",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "pangolin_update_data":{
+                    "type": "boolean",
+                    "title": "Update pangolin data",
+                    "description": "Download and use the latest pangolin dataset. Mututally exclusive with 'pangolin_database'",
+                    "fa_icon": "fas fa-project-diagram"
+                },
                 "fasta_header_extra":{
                     "type": "string",
                     "title": "Control fasta header naming of consensus sequence output.",
