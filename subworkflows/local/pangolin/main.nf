@@ -1,5 +1,6 @@
 include { PANGOLIN_RUN } from '../../../modules/nf-core/pangolin/run'
 include { PANGOLIN_UPDATEDATA } from '../../../modules/nf-core/pangolin/updatedata'
+include { SEQKIT_REPLACE as SEQKIT_REPLACE_NC } from "../../../modules/nf-core/seqkit/replace"
 
 workflow CALL_LINEAGES {
     take: 
